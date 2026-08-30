@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add `eca-scratch-chat`: start or switch to a chat that belongs to no project, for questions unrelated to the code being visited. The session runs in the directory named by `eca-scratch-directory`: by default an `eca-scratch` folder inside the system temp directory, created on demand, but when the option is set every scratch chat uses that directory instead. Either way no project context reaches the model, and repeated calls return to the same session like `scratch-buffer` does.
 - Bugfix: under evil (e.g. Doom), RET in normal state in chat buffers ran `markdown-do` from evil-collection's `markdown-mode-map` bindings, which `eca-chat-mode-map` inherits. It followed links but inserted a GFM checkbox (`* [ ]`) anywhere else, e.g. next to a question option. RET in normal state now goes through `eca-chat--key-pressed-return`.
 - Bugfix: a tool call awaiting approval whose expanded body is taller than the window no longer gets its label and Accept/Reject buttons scrolled above the window (#308). The window is anchored on the tool call with point on its Accept button (RET accepts), and once it resolves the view moves on to the next pending approval or back to the prompt.
 - Add `eca-chat-tool-call-functions`, an abnormal hook run with the session and content when a tool call changes state, e.g. to refresh magit after file edits.
